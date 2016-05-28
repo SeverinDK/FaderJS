@@ -4,16 +4,17 @@
 			Add images to fade in this array. Can also be in folders, just include folderpath.
 	*************************************************************************************************/
     var images = [
-		"http://placehold.it/100x100",
-		"http://placehold.it/200x200",
-		"http://placehold.it/300x300",
-		"http://placehold.it/400x400",
-		"http://placehold.it/500x500",
+	"http://placehold.it/1000x200",
+	"http://placehold.it/1000x200/00cc00/000000",
+        "http://placehold.it/1000x200",
+        "http://placehold.it/1000x200/00cc00/000000",
+        "http://placehold.it/1000x200",
+        "http://placehold.it/1000x200/00cc00/000000",
     ];
 
     var parent = "#img-container";
     var showTime = 2500;
-    var fadeTime = 1000;			
+    var fadeTime = 1000;
     var randomize = false;
 
 
@@ -34,7 +35,7 @@
         $(parent).append(front);
         $(front).attr("src", getNextImage());
         $(back).attr("src", getNextImage());
-        $(parent + " img").css("position", "fixed");
+        $(parent + " img").css("position", "absolute");
     }
 
     function fade(delay) {
@@ -48,7 +49,7 @@
                 if (randomize) {
                     $(active).attr("src", getRandomImage());
                 } else {
-                    $(active.attr("src", getNextImage()));
+                    $(active).attr("src", getNextImage());
                 }
             });
         }, delay);
