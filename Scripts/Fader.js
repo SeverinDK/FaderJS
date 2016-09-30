@@ -112,3 +112,4 @@ Fader.prototype.getIndexOfNextImage = function () {
     var imageIndex = this.activeImageIndex + 1;
     return imageIndex < this.images.length ? imageIndex : 0;
 }
+
