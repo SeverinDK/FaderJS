@@ -9,11 +9,9 @@
 
     $("#image-container").mouseenter(function () {
         fader.stop();
-        console.log("stopped.");
     });
 
     $("#image-container").mouseleave(function () {
         fader.start();
-        console.log("resumed.");
     });
 });
