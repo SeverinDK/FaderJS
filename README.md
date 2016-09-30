@@ -40,6 +40,7 @@ require(['fader'], function () {
 #####Generated Markup:
 ```html
 <div id="image-container" style="position:relative;">
+    <img src="http://www.placehold.it/400x150/000000" style="position: absolute;">
     <img src="http://www.placehold.it/400x150/ffffff" style="position: absolute;">
     <img src="http://www.placehold.it/400x150/ffd800" style="position: absolute; opacity: 1;">
 </div>
