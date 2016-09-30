@@ -1,4 +1,4 @@
-# imagefader
+# ImageFader
 
 Small script that makes it possible to fade between any amount of images. The benefit of this fader is that it will only create two image tags in the markup, no matter how many images are loaded into the array.
 
