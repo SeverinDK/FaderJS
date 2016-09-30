@@ -44,3 +44,11 @@ IntervalTimer.prototype.stop = function () {
     }
     return false;
 }
+
+IntervalTimer.prototype.destroy = function () {
+    if (this.timer) {
+        this.timer = clearInterval(this.timer);
+        return true;
+    }
+    return false;
+}
