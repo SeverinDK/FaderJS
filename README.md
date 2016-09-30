@@ -10,10 +10,12 @@ It is also possible to set it to randomize. More documentation coming soon.
 
 ###Code Example
 
+#####HTML:
 ```html
 <div id="image-container"></div>
 ```
 
+#####JavaScript:
 ```javascript
 require(['fader'], function () {
 
@@ -35,7 +37,7 @@ require(['fader'], function () {
 });
 ```
 
-###Generated Markup
+#####Generated Markup:
 ```html
 <div id="image-container" style="position:relative;">
     <img src="http://www.placehold.it/400x150/ffffff" style="position: absolute;">
