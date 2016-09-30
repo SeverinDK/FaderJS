@@ -8,6 +8,9 @@ The way it works, is that one image will always be hidden from view, either beca
 
 It is also possible to set it to randomize. More documentation coming soon.
 
+###Live Demo
+CodePen Demo: http://codepen.io/SeverinDK/pen/BLdrLN
+
 ###Code Example
 
 #####HTML:
