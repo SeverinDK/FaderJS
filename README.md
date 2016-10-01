@@ -11,6 +11,10 @@ It is also possible to set it to randomize. More documentation coming soon.
 ###Live Demo
 CodePen Demo: http://codepen.io/SeverinDK/pen/BLdrLN
 
+Test code for the demo is shown below. I added mouse events to show start/stop.
+Stopping the fader will pause the animation and starting it again will cause it to pick up where if left off.
+There is also a restart function that will reset everything back to the initial state and start again.
+
 ###Code Example
 
 #####HTML:
