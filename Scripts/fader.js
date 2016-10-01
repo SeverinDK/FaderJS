@@ -7,7 +7,7 @@ function Fader(container, images) {
 
     this.data = {
         initialized: false,
-        activeImageIndex: -1,
+        nextImageIndex: -1,
         faded: false,
     }
 
@@ -16,8 +16,9 @@ function Fader(container, images) {
         intervalTimer: null,
         frontImage: null,
         backImage: null,
-        activeImage: null,
-        animator: null
+        nextImage: null,
+        imageAnimation: null,
+        containerAnimation: null
     }
 
     this.initialize();
@@ -25,16 +26,31 @@ function Fader(container, images) {
 
 Fader.prototype.initialize = function () {
     if (!this.data.initialized) {
+
         this.components.frontImage = document.createElement("img");
-        $(this.components.frontImage).attr("src", this.getNextImage());
+        $(this.components.frontImage).attr("src", this.getNextImagePath());
 
         this.components.backImage = document.createElement("img");
-        $(this.components.backImage).attr("src", this.getNextImage());
+        $(this.components.backImage).attr("src", this.getNextImagePath());
 
         $(this.components.container).append(this.components.backImage);
         $(this.components.container).append(this.components.frontImage);
 
         $("#" + this.components.container.id + " img").css("position", "absolute");
+        $("#" + this.components.container.id).css("overflow", "hidden");
+
+        this.components.nextImage = this.components.frontImage;
+
+        var self = this;
+        this.components.frontImage.addEventListener("load", function handler() {
+            $(self.components.container).css({
+                height: $(self.components.frontImage).height(),
+                width: $(self.components.frontImage).width()
+            });
+
+            self.components.frontImage.removeEventListener("load", handler, false);
+        });
+
         this.data.initialized = true;
 
         return true;
@@ -45,7 +61,10 @@ Fader.prototype.initialize = function () {
 
 Fader.prototype.start = function () {
     if (!this.intervalTimer) {
-        this.intervalTimer = new IntervalTimer(this, this.settings.displayTime);
+        var self = this;
+        this.intervalTimer = new IntervalTimer(function() {
+            self.fade();
+        }, this.settings.displayTime);
         return this.intervalTimer.start();
     }
 
@@ -59,12 +78,16 @@ Fader.prototype.start = function () {
 
 Fader.prototype.restart = function () {
     this.intervalTimer.destroy();
+    this.components.imageAnimation.stop();
+    this.components.containerAnimation.stop();
     this.start();
     return true;
 }
 
 Fader.prototype.stop = function () {
     if (!this.intervalTimer.paused) {
+        this.components.imageAnimation.stop();
+        this.components.containerAnimation.stop();
         return this.intervalTimer.stop();
     }
 
@@ -77,18 +100,26 @@ Fader.prototype.fade = function () {
         var opacity = this.data.faded ? 1 : 0;
         var self = this;
 
-        this.components.animator = $(this.components.frontImage).stop().animate({
-            "opacity": opacity
+        this.components.imageAnimation = $(this.components.frontImage).stop().animate({
+            "opacity": opacity,
         }, this.settings.fadeTime, function () {
             self.data.faded = !self.data.faded;
-            self.components.activeImage = self.data.faded ? self.components.frontImage : self.components.backImage;
+            self.components.nextImage = self.data.faded ? self.components.frontImage : self.components.backImage;
 
             if (self.settings.randomize) {
-                $(self.components.activeImage).attr("src", self.getRandomImage());
+                $(self.components.nextImage).attr("src", self.getRandomImagePath());
             } else {
-                $(self.components.activeImage).attr("src", self.getNextImage());
+                $(self.components.nextImage).attr("src", self.getNextImagePath());
             }
         });
+
+        // Getting the current nextImage here. This is not the same nextImage as the one above.
+        // It's a bit confusing... I will refactor and document it soon.
+        var nextImage = self.data.faded ? self.components.frontImage : self.components.backImage;
+        this.components.containerAnimation = $(this.components.container).stop().animate({
+            height: $(nextImage).height(),
+            width: $(nextImage).width()
+        }, this.settings.fadeTime);
 
         return true;
     }
@@ -96,12 +127,12 @@ Fader.prototype.fade = function () {
     return false;
 }
 
-Fader.prototype.getNextImage = function () {
-    this.data.activeImageIndex = (this.data.activeImageIndex + 1) < this.images.length ? this.data.activeImageIndex + 1 : 0;
-    return this.images[this.data.activeImageIndex];
+Fader.prototype.getNextImagePath = function () {
+    this.data.nextImageIndex = (this.data.nextImageIndex + 1) < this.images.length ? this.data.nextImageIndex + 1 : 0;
+    return this.images[this.data.nextImageIndex];
 }
 
-Fader.prototype.getRandomImage = function () {
+Fader.prototype.getRandomImagePath = function () {
     return this.images[Math.round(Math.random() * images.length)];
 }
 

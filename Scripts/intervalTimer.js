@@ -1,5 +1,5 @@
-﻿function IntervalTimer(fader, interval) {
-    this.fader = fader;
+﻿function IntervalTimer(callback, interval) {
+    this.callback = callback;
     this.interval = interval;
     this.timer;
 
@@ -26,7 +26,7 @@ IntervalTimer.prototype.start = function () {
 
         var self = this;
         this.timer = setInterval(function () {
-            return self.fader.fade();
+            return self.callback();
         }, this.interval);
 
         this.startTime = new Date().getTime();
