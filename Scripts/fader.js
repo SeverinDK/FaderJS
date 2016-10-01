@@ -80,6 +80,7 @@ Fader.prototype.restart = function () {
     this.intervalTimer.destroy();
     this.components.imageAnimation.stop();
     this.components.containerAnimation.stop();
+    this.data.nextImageIndex = 0;
     this.start();
     return true;
 }
@@ -134,23 +135,6 @@ Fader.prototype.getNextImagePath = function () {
 
 Fader.prototype.getRandomImagePath = function () {
     return this.images[Math.round(Math.random() * images.length)];
-}
-
-Fader.prototype.setDisplayTime = function (displayTime) {
-    if (!displayTime) {
-        this.settings.displayTime = displayTime;
-        this.restart();
-        return true;
-    }
-    return false;
-}
-
-Fader.prototype.setFadeTime = function (fadeTime) {
-    if (!fadeTime) {
-        this.settings.fadeTime = fadeTime;
-        return true;
-    }
-    return false;
 }
 
 Fader.prototype.toggleRandomize = function () {
