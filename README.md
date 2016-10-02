@@ -1,4 +1,4 @@
-#FaderJS
+#fader.js
 
 ###Synopsis
 
