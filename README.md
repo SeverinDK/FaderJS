@@ -8,12 +8,16 @@ The way it works, is that one image will always be hidden from view, either beca
 
 It is also possible to set it to randomize. More documentation coming soon.
 
+<hr>
+
 ###Live Demo
 CodePen Demo: http://codepen.io/SeverinDK/pen/BLdrLN
 
 Test code for the demo is shown below. I added mouse events to show start/stop.
 Stopping the fader will pause the animation and starting it again will cause it to pick up where if left off.
 There is also a restart function that will reset everything back to the initial state and start again.
+
+<hr>
 
 ###Code Example
 
@@ -52,8 +56,14 @@ require(['fader'], function () {
 </div>
 ```
 
+<hr>
+
 ###Motivation
 I wrote the first version of this script shortly after I started writing JavaScript back in 2013. Since then I have used it a few times whenever I needed an image fader for a project, but I was always annoyed about the way it worked. It had a very limited usage and would fail from time to time. After the 2016 rewrite, it has become a lot better and easier to work with. Will continue to update on this from time to time.
 
+<hr>
+
 ###License
 MIT - Go ahead and do whatever you want! I doooon't caaare! ;-)
+
+<hr>
