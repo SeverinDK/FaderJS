@@ -1,4 +1,4 @@
-#fader.js
+#simplefader.js
 
 ###Synopsis
 
@@ -18,8 +18,22 @@ I added a timeout to stop the fader around 6 seconds after it starts.
 Stopping the fader will pause the animation and starting it again will cause it to pick up where if left off.
 
 <hr>
+###Installation
 
-###Code Example
+#### Npm
+```
+npm install simplefader
+```
+
+#### Browser
+```
+<script src="path/to/simplefader.js"></script>
+```
+When using this plugin in the browser, be sure to include moment.js, moment-timer.js and jQuery on your page first.
+
+
+
+###Usage
 
 #####HTML:
 ```html
