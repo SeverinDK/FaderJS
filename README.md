@@ -53,6 +53,9 @@ var fader = new Fader(document.getElementById("image-container"), [
 fader.setDisplayTime(10000);
 fader.setFadeTime(1000);
 fader.start();
+
+// Possible to randomize the fader using:
+fader.toggleRandomize();
 ```
 
 #####Generated Markup:
