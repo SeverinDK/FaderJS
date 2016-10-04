@@ -13,9 +13,9 @@ It is also possible to set it to randomize. More documentation coming soon.
 ###Live Demo
 CodePen Demo: http://codepen.io/SeverinDK/pen/BLdrLN
 
-Test code for the demo is shown below. I added mouse events to show start/stop.
+The demo shows how to use the fader to fade between different background images. The same demo is included in the example folder.
+I added a timeout to stop the fader around 6 seconds after it starts.
 Stopping the fader will pause the animation and starting it again will cause it to pick up where if left off.
-There is also a restart function that will reset everything back to the initial state and start again.
 
 <hr>
 
@@ -28,31 +28,24 @@ There is also a restart function that will reset everything back to the initial 
 
 #####JavaScript:
 ```javascript
-require(['fader'], function () {
+var fader = new Fader(document.getElementById("image-container"), [
+    "http://placehold.it/100x100/4286f4",
+    "http://placehold.it/200x200/e8f442",
+    "http://placehold.it/300x300/f49542",
+    "http://placehold.it/400x400/426bf4",
+    "http://placehold.it/500x500/f44242",
+]);
 
-    var fader = new Fader(document.getElementById("image-container"), [
-        "http://www.placehold.it/400x150/000000",
-        "http://www.placehold.it/400x150/ffffff",
-        "http://www.placehold.it/400x150/ffd800",
-    ]);
-
-    fader.start();
-
-    $("#image-container").mouseenter(function () {
-        fader.stop();
-    });
-
-    $("#image-container").mouseleave(function () {
-        fader.start();
-    });
-});
+fader.setDisplayTime(10000);
+fader.setFadeTime(1000);
+fader.start();
 ```
 
 #####Generated Markup:
 ```html
-<div id="image-container" style="position:relative;">
-    <img src="http://www.placehold.it/400x150/000000" style="position: absolute;">
-    <img src="http://www.placehold.it/400x150/ffd800" style="position: absolute; opacity: 1;">
+<div id="image-container">
+    <img src="http://www.placehold.it/100x100/4286f4" style="position: absolute;">
+    <img src="http://www.placehold.it/200x200/e8f442" style="position: absolute; opacity: 1;">
 </div>
 ```
 
