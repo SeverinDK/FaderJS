@@ -3,19 +3,62 @@
 <head>
     <title></title>
 	<meta charset="utf-8" />
-    <script data-main="Scripts/config" src="Scripts/require.js"></script>
-    <script src="Scripts/jquery-3.1.1.min.js"></script>
+    <script src="jquery-3.1.1.min.js"></script>
+    <script src="moment.js"></script>
+    <script src="moment-timer/lib/moment-timer.js"></script>
+    <script src="lib/fader.js"></script>
+    <style>
+        #background-container {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        #content {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+    </style>
 </head>
 <body>
-	<header>
-		<h1>FaderJS</h1>
-	</header>
-    <div id="image-container" style="position:relative;"></div>
-    <script src="test.js"></script>
-    <footer>
-    	<small>
-    		<a href="https://github.com/SeverinDK/FaderJS">https://github.com/SeverinDK/FaderJS</a>
-    	</small>
-    </footer>
+    <div id="background-container">
+        <div id="image-container" style="position:relative;"></div>
+    </div>
+    <script>
+        var fader = new Fader(document.getElementById("image-container"), [
+            "http://www.placehold.it/" + screen.width + "x" + screen.height + "/1c54af",
+            "http://www.placehold.it/" + screen.width + "x" + screen.height + "/2b3d59",
+            "http://www.placehold.it/" + screen.width + "x" + screen.height + "/50ce08",
+            "http://www.placehold.it/" + screen.width + "x" + screen.height + "/e2bb0b",
+            "http://www.placehold.it/" + screen.width + "x" + screen.height + "/0bd4e2",
+        ]);
+
+        fader.settings.displayTime = 500;
+        fader.settings.fadeTime = 250;
+        fader.start();
+
+        $("#image-container").mouseenter(function () {
+            fader.stop();
+        });
+
+        $("#image-container").mouseleave(function () {
+            fader.start();
+        });
+    </script>
+
+    <div id="content">
+        <footer>
+            <small>
+                <a href="https://github.com/SeverinDK/FaderJS">https://github.com/SeverinDK/FaderJS</a>
+            </small>
+        </footer>
+    </div>
 </body>
 </html>
