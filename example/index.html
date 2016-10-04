@@ -3,10 +3,10 @@
 <head>
     <title></title>
 	<meta charset="utf-8" />
-    <script src="jquery-3.1.1.min.js"></script>
-    <script src="moment.js"></script>
-    <script src="moment-timer.js"></script>
-    <script src="lib/fader.js"></script>
+    <script src="vendor/jquery-3.1.1.min.js"></script>
+    <script src="vendor/moment.js"></script>
+    <script src="vendor/moment-timer.js"></script>
+    <script src="lib/simplefader.js"></script>
     <style>
         #background-container {
             width: 100%;
@@ -29,7 +29,7 @@
 </head>
 <body>
     <div id="background-container">
-        <div id="image-container" style="position:relative;"></div>
+        <div id="image-container"></div>
     </div>
     <script>
         var fader = new Fader(document.getElementById("image-container"), [

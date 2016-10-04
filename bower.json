@@ -1,0 +1,21 @@
+{
+	"name": "simplefader",
+	"version": "1.0.0",
+	"description": "Simple fader for fading between any amount of images with minimal markup generated.",
+	"main": "lib/simplefader.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/SeverinDK/simplefader.js"
+	},
+	"authors": [
+		"Søren Ernst <some12thing@gmail.com>"
+	],
+	"keywords": [
+		"fader",
+		"imagefader",
+	],
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/SeverinDK/simplefader.js/issues"
+	}
+}
