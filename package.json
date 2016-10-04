@@ -7,6 +7,11 @@
 		"type": "git",
 		"url": "https://github.com/SeverinDK/simplefader.js"
 	},
+	"dependencies": {
+		"jquery": "latest",
+		"moment": "latest",
+		"moment-timer": "latest"	
+	},
 	"authors": [
 		"Søren Ernst <some12thing@gmail.com>"
 	],
