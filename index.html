@@ -33,22 +33,23 @@
     </div>
     <script>
         var fader = new Fader(document.getElementById("image-container"), [
-            "http://www.placehold.it/" + screen.width + "x" + screen.height + "/1c54af",
-            "http://www.placehold.it/" + screen.width + "x" + screen.height + "/2b3d59",
-            "http://www.placehold.it/" + screen.width + "x" + screen.height + "/50ce08",
-            "http://www.placehold.it/" + screen.width + "x" + screen.height + "/e2bb0b",
-            "http://www.placehold.it/" + screen.width + "x" + screen.height + "/0bd4e2",
+            "http://www.planwallpaper.com/static/images/6768666-1080p-wallpapers.jpg",
+            "http://wallpapercave.com/wp/vOJsqkP.jpg",
+            "http://www.planwallpaper.com/static/images/880665-road-wallpapers.jpg",
+            "https://wallpaperscraft.com/image/house_fairy_tale_art_light_night_101615_1920x1080.jpg",
+            "http://www.hdbloggers.net/wp-content/uploads/2016/08/Batman-1080p-HD-Wallpaper-Background.jpg",
         ]);
 
-        fader.settings.displayTime = 500;
-        fader.settings.fadeTime = 250;
+        fader.setDisplayTime(5000);
+        fader.setFadeTime(2500);
+        fader.toggleRandomize();
         fader.start();
 
-        $("#image-container").mouseenter(function () {
+        new moment.duration(6000).timer(function() {
             fader.stop();
         });
 
-        $("#image-container").mouseleave(function () {
+        new moment.duration(10000).timer(function() {
             fader.start();
         });
     </script>
