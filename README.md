@@ -41,6 +41,7 @@ When using this plugin in the browser, be sure to include moment.js, moment-time
 ```
 
 #####JavaScript:
+The first argument of SimpleFader is the container you wish to display the images in. This accepts either an object like shown below or simply the id of the container you wish to use: new SimpleFader("#image-container") or even: new SimpleFader("image-container")
 ```javascript
 var simpleFader = new SimpleFader(document.getElementById("image-container"), [
     "http://placehold.it/100x100/4286f4",
