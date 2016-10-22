@@ -1,4 +1,4 @@
-#simplefader.js
+#SimpleFader
 
 ###Synopsis
 
