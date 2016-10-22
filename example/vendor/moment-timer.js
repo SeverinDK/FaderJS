@@ -1,26 +1,10 @@
-// define internal moment reference
-var moment;
-
-if (typeof require === "function") {
-    try { moment = require('moment'); } 
-    catch (e) {}
-} 
-
-if (!moment && this.moment) {
-    moment = this.moment;
-}
-
-if (!moment) {
-    throw "Moment Timer cannot find Moment.js";
-}
-
 (function(root, undefined) {
 
     function Timer(duration, loop, wait, start, callback) {
-        this.duration = duration;
+        this.timerDuration = duration;
         this.callback = callback;
         this.loop = loop;
-        this.paused = true;
+        this.started = false;
         this.stopped = false;       // If stop() is called this variable will be used to finish the paused duration once it's started again.
         this.timer;
         this.startTick;
@@ -39,7 +23,7 @@ if (!moment) {
     }
 
     Timer.prototype.start = function() {
-        if(this.paused) {
+        if(!this.started) {
 
             var self = this;
 
@@ -50,25 +34,24 @@ if (!moment) {
                     return self.start();
                 }, this.getRemainingDuration());
 
-                this.endTick = Date.now() + this.getRemainingDuration();
                 this.stopped = false;
                 return true;
             }
 
             if(this.loop) {
                 this.timer = setInterval(function(){
-                    self.updateTicks();
+                    self.updateStartEndTickFromDuration(self.timerDuration);
                     return self.callback();
-                }, this.duration);
+                }, this.timerDuration);
             } else {
                 this.timer = setTimeout(function(){
-                    self.paused = true;
+                    self.started = false;
                     return self.callback();
-                }, this.duration);
+                }, this.timerDuration);
             }
             
-            this.updateTicks();
-            this.paused = false;
+            this.updateStartEndTickFromDuration(self.timerDuration);
+            this.started = true;
 
             return true;
         }
@@ -77,19 +60,46 @@ if (!moment) {
     }
 
     Timer.prototype.stop = function() {
-        if(!this.paused) {
+        if(this.started) {
+            this.clearTimer();
+            this.updateStartEndTickFromDuration(this.getRemainingDuration());
+            this.started = false;
+            this.stopped = true;
+            return true;
+        }
+
+        return false;
+    }
+
+    Timer.prototype.clearTimer = function() {
+        if(this.timer) {
             if(this.loop) {
                 this.timer = clearInterval(this.timer);
             } else {
                 this.timer = clearTimeout(this.timer);
             }
 
-            this.updateTicksWithTicksRemaining();
-            this.paused = true;
-            this.stopped = true;
             return true;
         }
 
+        return false;
+    }
+
+    Timer.prototype.updateStartEndTickFromDuration = function(duration) {
+        this.startTick = Date.now();
+        this.endTick = this.startTick + duration;
+
+        return true;
+    }
+
+    Timer.prototype.duration = function() {
+        if(arguments.length > 0) {
+            this.timerDuration = moment.duration(arguments[0], arguments[1]).asMilliseconds();
+            this.stop();
+            this.start();
+            return true;
+        }
+        
         return false;
     }
 
@@ -105,25 +115,24 @@ if (!moment) {
         return 0;
     }
 
-    Timer.prototype.updateTicks = function() {
-        this.startTick = Date.now();
-        this.endTick = this.startTick + this.duration;
-
-        return true;
+    Timer.prototype.isStopped = function() {
+        return this.stopped;
     }
 
-    Timer.prototype.updateTicksWithTicksRemaining = function() {
-        this.startTick = Date.now();
-        this.endTick = this.startTick + this.getRemainingDuration();
+    // define internal moment reference
+    var moment;
 
-        return true;
+    if (typeof require === "function") {
+        try { moment = require('moment'); } 
+        catch (e) {}
+    } 
+
+    if (!moment && this.moment) {
+        moment = this.moment;
     }
 
-    Timer.prototype.clearTicks = function() {
-        this.startTick = null;
-        this.endTick = null;
-
-        return true;
+    if (!moment) {
+        throw "Moment Timer cannot find Moment.js";
     }
 
     moment.duration.fn.timer = function(attributes, callback) {
