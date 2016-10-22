@@ -25,6 +25,11 @@ Stopping the fader will pause the animation and starting it again will cause it 
 npm install simplefader
 ```
 
+#### Bower
+```
+bower install simplefader
+```
+
 #### Browser
 ```
 <script src="path/to/simplefader.js"></script>
