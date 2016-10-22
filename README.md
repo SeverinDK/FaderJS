@@ -42,7 +42,7 @@ When using this plugin in the browser, be sure to include moment.js, moment-time
 
 #####JavaScript:
 ```javascript
-var fader = new Fader(document.getElementById("image-container"), [
+var simpleFader = new SimpleFader(document.getElementById("image-container"), [
     "http://placehold.it/100x100/4286f4",
     "http://placehold.it/200x200/e8f442",
     "http://placehold.it/300x300/f49542",
@@ -50,12 +50,12 @@ var fader = new Fader(document.getElementById("image-container"), [
     "http://placehold.it/500x500/f44242",
 ]);
 
-fader.setDisplayTime(10000);
-fader.setFadeTime(1000);
-fader.start();
+simpleFader.setDisplayTime(10000);
+simpleFader.setFadeTime(1000);
+simpleFader.start();
 
 // Possible to randomize the fader using:
-fader.toggleRandomize();
+simpleFader.toggleRandomize();
 ```
 
 #####Generated Markup:
