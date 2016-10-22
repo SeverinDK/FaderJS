@@ -13,9 +13,7 @@ It is also possible to set it to randomize. More documentation coming soon.
 ###Live Demo
 CodePen Demo: http://codepen.io/SeverinDK/pen/BLdrLN
 
-The demo shows how to use the fader to fade between different background images. The same demo is included in the example folder.
-I added a timeout to stop the fader around 6 seconds after it starts.
-Stopping the fader will pause the animation and starting it again will cause it to pick up where if left off.
+The demo shows how to use several faders to fade between images. One fader controls the background image, while the other fader controls the imade in the content.
 
 <hr>
 ###Installation
