@@ -1,6 +1,6 @@
 {
 	"name": "simplefader",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "Simple fader for fading between any amount of images with minimal markup generated.",
 	"main": "lib/simplefader.js",
 	"repository": {
