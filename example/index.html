@@ -34,7 +34,7 @@
         <div id="image-container"></div>
     </div>
     <script>
-        var fader = new Fader("#image-container", [
+        var simpleFader = new SimpleFader("#image-container", [
             "http://www.planwallpaper.com/static/images/6768666-1080p-wallpapers.jpg",
             "http://wallpapercave.com/wp/vOJsqkP.jpg",
             "http://www.planwallpaper.com/static/images/880665-road-wallpapers.jpg",
@@ -42,17 +42,17 @@
             "http://www.hdbloggers.net/wp-content/uploads/2016/08/Batman-1080p-HD-Wallpaper-Background.jpg",
         ]);
 
-        fader.setDisplayTime(1000);
-        fader.setFadeTime(250);
-        fader.toggleRandomize();
-        fader.start();
+        simpleFader.setDisplayTime(1000);
+        simpleFader.setFadeTime(250);
+        simpleFader.toggleRandomize();
+        simpleFader.start();
 
         /*new moment.duration(6000).timer(function() {
-            fader.stop();
+            simpleFader.stop();
         });
 
         new moment.duration(10000).timer(function() {
-            fader.start();
+            simpleFader.start();
         });*/
     </script>
 
